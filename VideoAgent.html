@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jssip-3.0.15.min.js" type="text/javascript"></script>
+    <!--<link rel="stylesheet" href="./css/loging.css">-->
+    <link rel="stylesheet" href="./css/loging.min.css">
+    <style>
+        body{
+            background:url("./img/service.jpg")  no-repeat center center;
+            -webkit-background-size:cover;
+            background-size:cover;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<script>
+    var bg = document.getElementsByTagName("body")[0];
+    //加载页面时执行一次
+    var winHeight;
+    var winWidth;
+    monitor();
+    //监听浏览器宽度的改变
+    window.onresize = function(){
+        monitor();
+    };
+    function monitor(){
+        //获取窗口宽度
+        if (window.innerWidth)
+            winWidth = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth))
+            winWidth = document.body.clientWidth;
+        //获取窗口高度
+        if (window.innerHeight)
+            winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;
+        //通过深入Document内部对body进行检测，获取窗口大小
+//        if (document.documentElement && 					document.documentElement.clientHeight && 	document.documentElement.clientWidth)
+//        {
+//            winHeight = document.documentElement.clientHeight;
+//            winWidth = document.documentElement.clientWidth;
+//        }
+        bg.style.width = winWidth +"px";
+        bg.style.height=winHeight + "px";
+        console.log(winWidth + "---" +winHeight);
+    }
+</script>
+<div id="header">
+    <h1>视频坐席</h1>
+    <p>
+        <label for="sip_uri">用户名：</label>
+        <input type="text" name="sip_uri" id="sip_uri" placeholder="用户名">
+    </p>
+    <p>
+        <label for="sip_password">密&nbsp;&nbsp;&nbsp;码：</label>
+        <input type="password" name="password" id="sip_password" placeholder="密码">
+    </p>
+    <p>
+        <label for="ws_uri">W&nbsp;S&nbsp;S：</label>
+        <input type="text" name="ws_uri" id="ws_uri" placeholder="WSS">
+    </p>
+    <!--<p>-->
+        <!--<label for="sip_phone_number">视频热线:</label>-->
+        <!--<input type="text" name="sip_phone_number" id="sip_phone_number" placeholder="视频热线">-->
+    <!--</p>-->
+    <div>
+            <span>
+                <input type="checkbox" name="checkbox" id="istrue" style="vertical-align: sub;">
+                <label for="istrue">保存设置</label>
+            </span>
+        <span>
+                <a href="javascript:;" id="login">Login</a>
+            </span>
+    </div>
+</div>
+
+<div id="footer">
+    <!--大黑条左边部分-->
+    <div class="user">
+        <img src="" id="headPortrait">
+        <div class="username">
+            <span id="username"></span>
+        </div>
+    </div>
+    <!--大黑条右边退出按钮-->
+    <div class="zhuxiao">
+        <a href="javascript:;" id="out"></a>
+    </div>
+    <div class="videoViewBox">
+        <video id="videoView" autoplay style="display: none"></video>
+        <video id="videoView2" autoplay></video>
+    </div>
+</div>
+<div id="repetitionS">
+    <span id="going"></span><span id="outing"></span>
+</div>
+</body>
+<script src="./js/VideoAgent.js"></script>
+</html>
